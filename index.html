@@ -1,40 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+          <script type="text/template">
+            <p style="padding: 0; margin: 0; font-size: 5rem; font-weight: 700">History API</p>
+            <p style="padding: 0; margin: 0; margin-bottom: 1em; font-size: 5rem; font-weight: 700">in JavaScript</p>
+            <ul>
+              <li>history navigation</li>
+              <li>history manipulation</li>
+            </ul>
+          </script>
+        </section>
+        <section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              history.length
+              <img src="./examples/assets/chrome_kcaIBVOtP7.gif" width='80%' />
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              history.length
+              <img src="./examples/assets/chrome_WgD2oAauVx.gif" width='80%' />
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              history.back()
+              <img src="./examples/assets/chrome_LrSmpj2fTB.gif" width='80%' />
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              history.forward()
+              <img src="./examples/assets/chrome_o2uUfavfkS.gif" width='80%' />
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              history.go(-2)
+              <img src="./examples/assets/chrome_EVyhVB25VY.gif" width='80%' />
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              history.go(1)
+              <img src="./examples/assets/chrome_VcWFPYmatn.gif" width='80%' />
+            </script>
+          </section>
+        </section>
+        <section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              History manipulation using the <a href="#/2">history.pushState()</a> method
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <a href="#/2">history.pushState(state, title, url);</a>
+            <textarea data-template>
+              ```js [1|2|3|4-5]
+              const state = { 'page': 1, 'user_id': 5 };
+              const title = 'Contacts';
+              const url = 'contacts';
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+              history.pushState(state, title, url);
+              ```
+            </textarea>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <textarea data-template>
+              ```js [1-5|9-14]
+              function loadContacts() {
+                document.body.append('Here are my contacts!')
+              };
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+              loadContacts();
+
+
+
+              function loadContacts() {
+                history.pushState(null, null, 'contacts')
+                document.body.append('Here are my contacts!')
+              };
+
+              loadContacts();
+              ```
+            </textarea>
+          </section>
+        </section>
+        <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+          <script type="text/template">
+            The popstate event
+            ``` js
+            window.addEventListener('popstate', (e) => {
+              console.log(e);
+            });
+            ```
+            <img src="./examples/assets/screenshot1.png" width='60%' />
+          </script>
+        </section>
+        <section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              The <a href="#/2">history.replaceState()</a> method
+              ``` js
+              history.pushState(1, null, 'contacts');
+              ```
+              <img src="./examples/assets/screenshot2.png" width='60%' />
+            </script>
+          </section>
+          <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+            <script type="text/template">
+              The <a href="#/2">history.replaceState()</a> method
+              ``` js
+              history.replaceState(40, null, 'contacts');
+              ```
+              <img src="./examples/assets/screenshot3.png" width='60%' />
+            </script>
+          </section>
+        </section>
+        <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+          <script type="text/template">
+            ❌Incorrect
+            ``` js
+            history.pushState(null, null, 'https://google.com');
+            ```
+            <img src="./examples/assets/screenshot4.png" width='50%' class="fragment"/>
+
+            ✅Correct
+            ``` js
+            history.pushState(null, null, 'about');
+            ```
+          </script>
+        </section>
+        <section data-markdown data-background="rgba(0, 100, 100, 0.2)">
+          <script type="text/template">
+            Thanks for watching!
+          </script>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
